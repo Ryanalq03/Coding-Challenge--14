@@ -57,3 +57,46 @@ resolveButton.addEventListener("click", function(event) {
     //When resolved button is clicked it will remove the ticket
     ticketContainer.removeChild(ticketCard); 
 });
+
+//Task 5: Inline editing of Support Tickets
+
+//Creates function to enable edits
+function enableEditing(ticket, nameHeading, issueParagraph, priorityLabel, editButton) {
+    
+    //Prepopulates the input fields for name, issue and priority label 
+    const nameInput = document.createElement("input");
+    nameInput.type = "text"; 
+    nameInput.value = nameHeading.textContent;  
+
+    const issueInput = document.createElement("input");
+    issueInput.type = "text"; 
+    issueInput.value = issueParagraph.textContent; 
+
+    const priorityInput = document.createElement("input");
+    priorityInput.type = "text"; 
+    priorityInput.value = priorityLabel.textContent; 
+
+    //Adds a save button for any new edits  
+    const saveButton = document.createElement("button");
+    saveButton.textContent = "Save";
+    saveButton.addEventListener("click", () => {
+        //Updates input to new values 
+        nameHeading.textContent = nameInput.value;
+        issueParagraph.textContent = issueInput.value;
+        priorityLabel.textContent = priorityInput.value;
+
+        //Restore original elements after save button is clicked 
+        ticket.replaceChild(nameHeading, nameInput);
+        ticket.replaceChild(issueParagraph, issueInput);
+        ticket.replaceChild(priorityLabel, priorityInput);
+        ticket.replaceChild(editButton, saveButton);
+    });
+
+    //Any static text is replaced with the inputs 
+    ticket.replaceChild(nameInput, nameHeading);
+    ticket.replaceChild(issueInput, issueParagraph);
+    ticket.replaceChild( priorityInput, priorityLabel);
+    ticket.replaceChild(saveButton, editButton);
+}
+
+//End of attempt at Coding Challenge #14
