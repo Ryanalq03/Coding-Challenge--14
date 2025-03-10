@@ -30,3 +30,22 @@ const resolveButton = document.createElement('button');
     resolveButton.setAttribute('class', 'resolve-button');
 }
 
+//Task 3 Converting NodeLists to Arrays for Bulk Updates
+
+//Adds function that will highlight high priority tickets
+function highlightHighPriority() {
+    const highPriorityTickets = document.querySelectorAll("VeryHigh"); 
+    // Convert NodeList to an array
+    const ticketsArray = Array.from(highPriorityTickets); 
+
+    ticketsArray.forEach(ticket => {
+        //Changes the colors of the border and background
+        ticket.parentElement.style.border = "2px red"; 
+        ticket.parentElement.style.backgroundColor = "Grey"; 
+    });
+}
+
+//When a ticket is added the function will be called back
+document.getElementById("addTicketButton").addEventListener("click", highlightHighPriority);
+
+
